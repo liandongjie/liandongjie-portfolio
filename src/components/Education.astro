@@ -1,0 +1,21 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section class="content-section section-shell" id="education" aria-labelledby="education-title">
+  <div class="section-heading reveal">
+    <p class="section-index">02 / EDUCATION</p>
+    <h2 id="education-title">教育经历</h2>
+  </div>
+  <ol class="education-list">
+    {profile.education.map((item, index) => (
+      <li class="education-card reveal">
+        <span class="education-number">0{index + 1}</span>
+        <div>
+          <h3>{item.school}</h3>
+          <p>{item.degree}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>

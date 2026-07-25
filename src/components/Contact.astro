@@ -1,0 +1,41 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section class="contact-section" id="contact" aria-labelledby="contact-title">
+  <div class="section-shell">
+    <div class="section-heading reveal">
+      <p class="section-index">04 / CONTACT</p>
+      <h2 id="contact-title">保持联系</h2>
+      <p>如果你想与我交流，可以通过电话或邮件联系。</p>
+    </div>
+
+    <div class="contact-grid">
+      <article class="contact-card reveal">
+        <p>电话</p>
+        <a href={profile.contact.phoneHref}>{profile.contact.phone}</a>
+        <button type="button" data-copy={profile.contact.phoneCopy} data-kind="电话号码">复制电话</button>
+      </article>
+      <article class="contact-card reveal">
+        <p>邮箱</p>
+        <a href={profile.contact.emailHref}>{profile.contact.email}</a>
+        <button type="button" data-copy={profile.contact.email} data-kind="邮箱地址">复制邮箱</button>
+      </article>
+    </div>
+    <p class="copy-status" aria-live="polite"></p>
+  </div>
+</section>
+
+<script>
+  const status = document.querySelector<HTMLElement>('.copy-status');
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy ?? '');
+        if (status) status.textContent = `${button.dataset.kind}已复制`;
+      } catch {
+        if (status) status.textContent = '复制失败，请手动选择并复制';
+      }
+    });
+  });
+</script>

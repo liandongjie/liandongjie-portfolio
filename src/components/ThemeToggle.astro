@@ -1,0 +1,34 @@
+<button class="theme-toggle" type="button" aria-label="切换为深色模式" aria-pressed="false">
+  <svg class="theme-icon theme-icon-sun" aria-hidden="true" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="3.5"></circle>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
+  </svg>
+  <svg class="theme-icon theme-icon-moon" aria-hidden="true" viewBox="0 0 24 24">
+    <path d="M20 15.1A8.5 8.5 0 0 1 8.9 4a8.5 8.5 0 1 0 11.1 11.1Z"></path>
+  </svg>
+  <span class="theme-label">深色</span>
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.theme-toggle');
+  const themeMeta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+
+  function syncThemeButton() {
+    if (!button) return;
+    const dark = document.documentElement.dataset.theme === 'dark';
+    button.ariaLabel = dark ? '切换为浅色模式' : '切换为深色模式';
+    button.setAttribute('aria-pressed', String(dark));
+    const label = button.querySelector<HTMLElement>('.theme-label');
+    if (label) label.textContent = dark ? '浅色' : '深色';
+    if (themeMeta) themeMeta.content = dark ? '#121514' : '#f5f3ee';
+  }
+
+  syncThemeButton();
+  button?.addEventListener('click', () => {
+    const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+    localStorage.setItem('theme', theme);
+    syncThemeButton();
+  });
+</script>

@@ -1,0 +1,22 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section class="hero section-shell" id="home" aria-labelledby="hero-title">
+  <div class="hero-copy reveal">
+    <p class="eyebrow">Portfolio · 2026</p>
+    <h1 id="hero-title">{profile.name}</h1>
+    <p class="hero-role">{profile.role}</p>
+    <p class="hero-intro">{profile.intro}</p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="#contact">联系我</a>
+      <a class="button button-secondary" href="#education">查看教育经历</a>
+    </div>
+  </div>
+
+  <div class="portrait-wrap reveal reveal-delay" aria-label="个人照片">
+    <div class="portrait-frame">
+      <img src="/profile-photo.jpg" alt="DONGJIE 个人照片" width="906" height="1099" />
+    </div>
+  </div>
+</section>
