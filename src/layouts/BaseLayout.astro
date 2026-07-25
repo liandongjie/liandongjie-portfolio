@@ -7,6 +7,8 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+const ogImageUrl = Astro.site ? new URL('/og-placeholder.png', Astro.site) : undefined;
 ---
 
 <!doctype html>
@@ -15,11 +17,14 @@ const { title, description } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <meta name="theme-color" content="#f5f3ee" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="zh_CN" />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <script is:inline>
