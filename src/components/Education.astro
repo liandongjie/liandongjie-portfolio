@@ -10,11 +10,109 @@ import { profile } from '../data/profile';
   <ol class="education-list">
     {profile.education.map((item, index) => (
       <li class="education-card reveal">
-        <span class="education-number">0{index + 1}</span>
-        <div>
-          <h3>{item.school}</h3>
-          <p>{item.degree}</p>
-        </div>
+        <span class="education-number" aria-hidden="true">0{index + 1}</span>
+        <article class="education-card-content" aria-labelledby={`education-school-${index}`}>
+          <header class="education-school-header">
+            <div class="education-school-identity">
+              <img
+                class="education-school-logo"
+                src={item.logo}
+                alt={item.logoAlt}
+                width="68"
+                height="68"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="education-school-heading">
+                <h3 id={`education-school-${index}`}>{item.school}</h3>
+                <ul class="education-tags" aria-label="学校标签">
+                  {item.tags.map((tag) => <li>{tag}</li>)}
+                </ul>
+              </div>
+            </div>
+            <div class="education-school-meta">
+              <p class="education-period">{item.period}</p>
+              <p>{[item.status, item.location].filter(Boolean).join(' · ')}</p>
+            </div>
+          </header>
+
+          <div class="education-degrees">
+            {item.degrees.map((degree) => (
+              <section class="education-degree">
+                <div class="education-degree-heading">
+                  <h4>{degree.label}</h4>
+                  <p>{degree.period}</p>
+                </div>
+                <dl class="education-degree-details">
+                  <div>
+                    <dt>专业</dt>
+                    <dd>{degree.major}</dd>
+                  </div>
+                  <div>
+                    <dt>学位</dt>
+                    <dd>{degree.credential}</dd>
+                  </div>
+                  <div class="education-degree-wide">
+                    <dt>学院</dt>
+                    <dd>{degree.college}</dd>
+                  </div>
+                  {degree.studyMode && (
+                    <div>
+                      <dt>培养方式</dt>
+                      <dd>{degree.studyMode}</dd>
+                    </div>
+                  )}
+                </dl>
+                {degree.facts.length > 0 && (
+                  <ul class="education-facts">
+                    {degree.facts.map((fact) => <li>{fact}</li>)}
+                  </ul>
+                )}
+                {degree.courses.length > 0 && (
+                  <p class="education-courses">
+                    <strong>代表课程</strong>
+                    <span>{degree.courses.join('、')}</span>
+                  </p>
+                )}
+              </section>
+            ))}
+          </div>
+
+          <section class="education-publication" aria-labelledby={`education-publication-${index}`}>
+            <h4 id={`education-publication-${index}`}>论文成果</h4>
+            <a
+              class="education-publication-title"
+              href={item.publication.url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {item.publication.title}
+            </a>
+            <p class="education-publication-meta">
+              {item.publication.venue} · {item.publication.date}
+            </p>
+            <p class="education-publication-authors">{item.publication.authors}</p>
+            <a
+              class="education-publication-doi"
+              href={item.publication.url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              DOI: {item.publication.doi}
+            </a>
+          </section>
+
+          <div class="education-sections">
+            {item.sections.map((section) => (
+              <section class="education-detail-section">
+                <h4>{section.title}</h4>
+                <ul>
+                  {section.items.map((detail) => <li>{detail}</li>)}
+                </ul>
+              </section>
+            ))}
+          </div>
+        </article>
       </li>
     ))}
   </ol>
