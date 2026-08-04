@@ -1,6 +1,14 @@
 # liandongjie-portfolio
 
-DONGJIE 的单页个人主页，使用 Astro、TypeScript 和原生 CSS 构建。
+DONGJIE 的中英文个人主页，使用 Astro、TypeScript 和原生 CSS 构建。
+
+## 页面语言
+
+- 中文首页：`/`
+- 英文首页：`/en/`
+- 中文博客：`/blog/[slug]/`
+
+项目使用 Astro 内置国际化路由。中文为默认语言，不根据浏览器语言自动跳转；博客本阶段仅提供中文版本。
 
 ## 本地开发
 

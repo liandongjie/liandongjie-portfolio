@@ -1,11 +1,19 @@
 ---
-import { profile } from '../data/profile';
+import type { Profile } from '../data/profile';
+import type { Ui } from '../i18n/ui';
+
+interface Props {
+  profile: Profile;
+  ui: Ui;
+}
+
+const { profile, ui } = Astro.props;
 ---
 
 <section class="content-section section-shell" id="education" aria-labelledby="education-title">
   <div class="section-heading reveal">
     <p class="section-index">04 / EDUCATION</p>
-    <h2 id="education-title">教育经历</h2>
+    <h2 id="education-title">{ui.sections.education}</h2>
   </div>
   <ol class="education-list">
     {profile.education.map((item, index) => (
@@ -25,7 +33,7 @@ import { profile } from '../data/profile';
               />
               <div class="education-school-heading">
                 <h3 id={`education-school-${index}`}>{item.school}</h3>
-                <ul class="education-tags" aria-label="学校标签">
+                <ul class="education-tags" aria-label={ui.education.schoolTags}>
                   {item.tags.map((tag) => <li>{tag}</li>)}
                 </ul>
               </div>
@@ -45,20 +53,20 @@ import { profile } from '../data/profile';
                 </div>
                 <dl class="education-degree-details">
                   <div>
-                    <dt>专业</dt>
+                    <dt>{ui.education.major}</dt>
                     <dd>{degree.major}</dd>
                   </div>
                   <div>
-                    <dt>学位</dt>
+                    <dt>{ui.education.degree}</dt>
                     <dd>{degree.credential}</dd>
                   </div>
                   <div class="education-degree-wide">
-                    <dt>学院</dt>
+                    <dt>{ui.education.school}</dt>
                     <dd>{degree.college}</dd>
                   </div>
                   {degree.studyMode && (
                     <div>
-                      <dt>培养方式</dt>
+                      <dt>{ui.education.studyMode}</dt>
                       <dd>{degree.studyMode}</dd>
                     </div>
                   )}
@@ -70,8 +78,8 @@ import { profile } from '../data/profile';
                 )}
                 {degree.courses.length > 0 && (
                   <p class="education-courses">
-                    <strong>代表课程</strong>
-                    <span>{degree.courses.join('、')}</span>
+                    <strong>{ui.education.courses}</strong>
+                    <span>{degree.courses.join(ui.education.courseSeparator)}</span>
                   </p>
                 )}
               </section>
@@ -79,7 +87,7 @@ import { profile } from '../data/profile';
           </div>
 
           <section class="education-publication" aria-labelledby={`education-publication-${index}`}>
-            <h4 id={`education-publication-${index}`}>论文成果</h4>
+            <h4 id={`education-publication-${index}`}>{ui.education.publication}</h4>
             <a
               class="education-publication-title"
               href={item.publication.url}

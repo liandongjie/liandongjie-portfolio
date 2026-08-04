@@ -1,30 +1,46 @@
 ---
 import '../styles/global.css';
+import { localeMeta, type Locale } from '../i18n/config';
 
 interface Props {
   title: string;
   description: string;
   ogType?: 'website' | 'article';
   publishedAt?: Date;
+  locale?: Locale;
+  alternateHomepages?: boolean;
 }
 
-const { title, description, ogType = 'website', publishedAt } = Astro.props;
+const {
+  title,
+  description,
+  ogType = 'website',
+  publishedAt,
+  locale = 'zh-cn',
+  alternateHomepages = false,
+} = Astro.props;
+const meta = localeMeta[locale];
 const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
 const ogImageUrl = Astro.site ? new URL('/og-placeholder.png', Astro.site) : undefined;
+const chineseHomeUrl = Astro.site ? new URL('/', Astro.site) : '/';
+const englishHomeUrl = Astro.site ? new URL('/en/', Astro.site) : '/en/';
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang={meta.htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    {alternateHomepages && <link rel="alternate" hreflang="zh-CN" href={chineseHomeUrl} />}
+    {alternateHomepages && <link rel="alternate" hreflang="en" href={englishHomeUrl} />}
+    {alternateHomepages && <link rel="alternate" hreflang="x-default" href={chineseHomeUrl} />}
     <meta name="theme-color" content="#f4f7fc" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
-    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale" content={meta.ogLocale} />
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
     {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
     {publishedAt && <meta property="article:published_time" content={publishedAt.toISOString()} />}

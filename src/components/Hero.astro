@@ -1,21 +1,32 @@
 ---
-import { profile } from '../data/profile';
+import type { Profile } from '../data/profile';
+import { localeMeta, type Locale } from '../i18n/config';
+import type { Ui } from '../i18n/ui';
+
+interface Props {
+  profile: Profile;
+  ui: Ui;
+  locale: Locale;
+}
+
+const { profile, ui, locale } = Astro.props;
+const homeHref = localeMeta[locale].homePath;
 ---
 
 <section class="hero section-shell" id="home" aria-labelledby="hero-title">
   <div class="hero-copy reveal">
-    <p class="eyebrow">求职方向</p>
+    <p class="eyebrow">{ui.hero.eyebrow}</p>
     <h1 id="hero-title">{profile.name}</h1>
     <p class="hero-role">{profile.direction}</p>
     <div class="hero-actions">
-      <a class="button button-primary" href="#contact">联系我</a>
-      <a class="button button-secondary" href="#projects">查看项目</a>
+      <a class="button button-primary" href={`${homeHref}#contact`}>{ui.hero.contact}</a>
+      <a class="button button-secondary" href={`${homeHref}#projects`}>{ui.hero.projects}</a>
     </div>
   </div>
 
-  <div class="portrait-wrap reveal reveal-delay" aria-label="个人照片">
+  <div class="portrait-wrap reveal reveal-delay" aria-label={ui.hero.portraitLabel}>
     <div class="portrait-frame">
-      <img src="/profile-photo.jpg" alt="DONGJIE 个人照片" width="906" height="1099" />
+      <img src="/profile-photo.jpg" alt={ui.hero.portraitAlt} width="906" height="1099" />
     </div>
   </div>
 </section>
