@@ -372,6 +372,10 @@ summary {
   scroll-margin-top: 76px;
 }
 
+#education {
+  scroll-margin-top: 108px;
+}
+
 .section-heading h2 {
   margin: 0;
   font-size: clamp(2.2rem, 4vw, 3.8rem);
@@ -416,15 +420,14 @@ summary {
   display: grid;
   margin: 0;
   padding: 0;
-  gap: 14px;
+  gap: 18px;
   list-style: none;
 }
 
 .education-card {
   display: grid;
   grid-template-columns: 54px 1fr;
-  align-items: center;
-  min-height: 142px;
+  align-items: start;
   padding: 26px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -439,21 +442,263 @@ summary {
 }
 
 .education-number {
+  padding-top: 8px;
   color: var(--accent);
   font-size: 0.78rem;
   font-weight: 750;
   letter-spacing: 0.1em;
 }
 
-.education-card h3 {
+.education-card-content,
+.education-school-identity,
+.education-school-heading,
+.education-degree,
+.education-publication,
+.education-detail-section {
+  min-width: 0;
+}
+
+.education-school-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.education-school-identity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.education-school-logo {
+  flex: 0 0 68px;
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+}
+
+.education-school-heading {
+  display: grid;
+  gap: 12px;
+}
+
+.education-school-heading h3 {
   margin: 0;
   font-size: clamp(1.35rem, 2.5vw, 1.8rem);
   letter-spacing: -0.025em;
+  line-height: 1.2;
 }
 
-.education-card p {
-  margin: 4px 0 0;
+.education-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  gap: 6px;
+  list-style: none;
+}
+
+.education-tags li {
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.education-school-meta {
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+.education-school-meta p {
+  margin: 0;
   color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.education-school-meta .education-period {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.education-degrees {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 26px;
+  gap: 12px;
+}
+
+.education-degree {
+  padding: 20px;
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.education-degree:only-child {
+  grid-column: 1 / -1;
+}
+
+.education-degree-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.education-degree h4,
+.education-detail-section h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.education-degree-heading p {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.education-degree-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 16px 0 0;
+  gap: 12px 16px;
+}
+
+.education-degree-details div {
+  min-width: 0;
+}
+
+.education-degree-details .education-degree-wide {
+  grid-column: 1 / -1;
+}
+
+.education-degree-details dt {
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.education-degree-details dd {
+  margin: 2px 0 0;
+  overflow-wrap: anywhere;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.education-facts {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 16px 0 0;
+  padding: 12px 0 0;
+  border-top: 1px solid var(--line);
+  gap: 6px 18px;
+  list-style: none;
+}
+
+.education-facts li {
+  color: var(--accent-strong);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.education-courses {
+  display: grid;
+  margin: 16px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  gap: 3px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.education-courses strong {
+  color: var(--text);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+}
+
+.education-publication {
+  display: grid;
+  margin-top: 26px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  gap: 6px;
+}
+
+.education-publication h4 {
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.education-publication-title {
+  width: fit-content;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.education-publication-title:hover,
+.education-publication-doi:hover {
+  color: var(--accent);
+}
+
+.education-publication-meta,
+.education-publication-authors {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  overflow-wrap: anywhere;
+}
+
+.education-publication-doi {
+  width: fit-content;
+  max-width: 100%;
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.education-sections {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 26px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  gap: 22px 28px;
+}
+
+.education-detail-section:only-child {
+  grid-column: 1 / -1;
+}
+
+.education-detail-section ul {
+  display: grid;
+  margin: 10px 0 0;
+  padding-left: 18px;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.education-detail-section li {
+  padding-left: 2px;
+  overflow-wrap: anywhere;
+}
+
+.education-detail-section li::marker {
+  color: var(--accent);
 }
 
 .blog-placeholder {
@@ -681,6 +926,22 @@ summary {
   .portrait-wrap {
     width: min(68vw, 260px);
   }
+
+  .education-school-header,
+  .education-degree-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .education-school-meta {
+    text-align: left;
+  }
+
+  .education-degrees,
+  .education-sections {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 440px) {
@@ -695,8 +956,36 @@ summary {
   }
 
   .education-card {
-    grid-template-columns: 38px 1fr;
+    grid-template-columns: 1fr;
     padding: 22px 18px;
+    gap: 10px;
+  }
+
+  .education-number {
+    padding-top: 0;
+  }
+
+  .education-school-identity {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .education-school-logo {
+    flex-basis: 56px;
+    width: 56px;
+    height: 56px;
+  }
+
+  .education-degree {
+    padding: 17px 15px;
+  }
+
+  .education-degree-details {
+    grid-template-columns: 1fr;
+  }
+
+  .education-degree-details .education-degree-wide {
+    grid-column: auto;
   }
 
   .site-footer .section-shell {
