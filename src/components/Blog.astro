@@ -1,11 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime(),
+);
+---
+
 <section class="content-section section-shell" id="blog" aria-labelledby="blog-title">
   <div class="section-heading reveal">
     <p class="section-index">05 / BLOG</p>
     <h2 id="blog-title">博客</h2>
   </div>
-  <div class="blog-placeholder reveal">
-    <p class="status-pill"><span aria-hidden="true"></span> Coming Soon</p>
-    <h3>内容整理中</h3>
-    <p>博客入口已预留，文章将在准备完成后发布。</p>
+  <div class="blog-list">
+    {posts.map((post) => {
+      const publishedDate = post.data.publishedAt.toISOString().slice(0, 10);
+      const postUrl = `/blog/${post.id}/`;
+
+      return (
+        <article class="blog-item reveal">
+          <time datetime={publishedDate}>{publishedDate}</time>
+          <div class="blog-item-copy">
+            <h3><a href={postUrl}>{post.data.title}</a></h3>
+            <p>{post.data.description}</p>
+          </div>
+          <a class="blog-read-more" href={postUrl} aria-label={`阅读全文：${post.data.title}`}>
+            阅读全文 <span aria-hidden="true">→</span>
+          </a>
+        </article>
+      );
+    })}
   </div>
 </section>

@@ -1,0 +1,62 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { profile } from '../../data/profile';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const publishedDate = post.data.publishedAt.toISOString().slice(0, 10);
+const tableOfContents = headings.filter((heading) => heading.depth === 2);
+---
+
+<BaseLayout
+  title={`${post.data.title} — ${profile.name}`}
+  description={post.data.description}
+  ogType="article"
+  publishedAt={post.data.publishedAt}
+>
+  <Navigation />
+  <main class="article-page">
+    <article class="article-shell">
+      <div class="article-main-column">
+        <a class="article-back-link" href="/#blog">← 返回博客列表</a>
+        <header class="article-header">
+          <h1>{post.data.title}</h1>
+          <time datetime={publishedDate}>{publishedDate}</time>
+          <p>{post.data.description}</p>
+        </header>
+      </div>
+      <div class="article-content-layout">
+        <aside class="article-toc">
+          <nav aria-label="文章目录">
+            <p class="article-toc-title">目录</p>
+            <ol>
+              {tableOfContents.map((heading) => (
+                <li><a href={`#${heading.slug}`}>{heading.text}</a></li>
+              ))}
+            </ol>
+          </nav>
+        </aside>
+        <div class="article-body">
+          <Content />
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

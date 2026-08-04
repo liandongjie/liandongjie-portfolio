@@ -4,9 +4,11 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
+  ogType?: 'website' | 'article';
+  publishedAt?: Date;
 }
 
-const { title, description } = Astro.props;
+const { title, description, ogType = 'website', publishedAt } = Astro.props;
 const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
 const ogImageUrl = Astro.site ? new URL('/og-placeholder.png', Astro.site) : undefined;
 ---
@@ -21,10 +23,11 @@ const ogImageUrl = Astro.site ? new URL('/og-placeholder.png', Astro.site) : und
     <meta name="theme-color" content="#f4f7fc" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:locale" content="zh_CN" />
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
     {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    {publishedAt && <meta property="article:published_time" content={publishedAt.toISOString()} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <script is:inline>
