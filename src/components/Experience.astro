@@ -1,0 +1,26 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section class="content-section section-shell" id="experience" aria-labelledby="experience-title">
+  <div class="section-heading reveal">
+    <p class="section-index">01 / EXPERIENCE</p>
+    <h2 id="experience-title">实习经历</h2>
+  </div>
+  <ol class="experience-list">
+    {profile.experience.map((item) => (
+      <li class="experience-item reveal">
+        <article>
+          <div class="experience-primary">
+            <h3>{item.company}</h3>
+            <p>{item.role}</p>
+          </div>
+          <div class="experience-meta">
+            <p>{item.location}</p>
+            <p>{item.period}</p>
+          </div>
+        </article>
+      </li>
+    ))}
+  </ol>
+</section>

@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Hero from '../components/Hero.astro';
+import Experience from '../components/Experience.astro';
+import Skills from '../components/Skills.astro';
 import About from '../components/About.astro';
 import Education from '../components/Education.astro';
 import Blog from '../components/Blog.astro';
@@ -14,8 +16,10 @@ import { profile } from '../data/profile';
   <Navigation />
   <main>
     <Hero />
-    <About />
+    <Experience />
+    <Skills />
     <Education />
+    <About />
     <Blog />
     <Contact />
   </main>

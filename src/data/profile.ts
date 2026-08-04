@@ -4,6 +4,54 @@ export const profile = {
   direction: '全栈开发',
   description: 'DONGJIE 的个人主页，记录全栈开发方向的学习与探索。',
   intro: '以全栈开发为当前方向，持续探索从界面到应用逻辑的完整开发过程。',
+  experience: [
+    {
+      company: '上海量客私募基金管理有限公司',
+      role: '全栈实习生',
+      location: '南京',
+      period: '2026.06–2026.08',
+    },
+    {
+      company: 'FilmAction AI',
+      role: '全栈实习生',
+      location: '北京',
+      period: '2026.04–2026.06',
+    },
+    {
+      company: '百度',
+      role: '前端实习生',
+      location: '上海',
+      period: '2025.08–2025.11',
+    },
+    {
+      company: '生态环境部环境发展中心',
+      role: 'WebGIS 全栈实习生',
+      location: '北京',
+      period: '2021.10–2022.03',
+    },
+  ],
+  skills: [
+    {
+      category: '前端开发',
+      description: '响应式页面、组件化开发、接口联调与交互优化',
+      technologies: ['JavaScript、TypeScript', 'React、Vue', 'Element Plus、Ant Design'],
+    },
+    {
+      category: '后端与接口',
+      description: '接口设计、业务逻辑实现及前后端联调',
+      technologies: ['Python', 'FastAPI、Flask', 'RESTful API、SQLAlchemy'],
+    },
+    {
+      category: '数据库与数据',
+      description: '数据表设计、SQL 查询、数据持久化和数据库迁移',
+      technologies: ['MySQL、PostgreSQL、SQLite'],
+    },
+    {
+      category: '工程化与部署',
+      description: 'Linux 环境下的构建、测试、部署和问题排查基础',
+      technologies: ['Git、Docker、Nginx、Postman', 'GitHub Actions'],
+    },
+  ],
   education: [
     {
       school: '南京大学',
@@ -121,9 +169,9 @@ export const profile = {
   },
   nav: [
     { href: '#home', label: '首页' },
-    { href: '#about', label: '关于' },
-    { href: '#education', label: '教育经历' },
-    { href: '#blog', label: '博客' },
-    { href: '#contact', label: '联系方式' },
+    { href: '#experience', label: '经历' },
+    { href: '#skills', label: '技能' },
+    { href: '#education', label: '教育' },
+    { href: '#contact', label: '联系' },
   ],
 } as const;
