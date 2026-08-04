@@ -29,8 +29,9 @@ const tableOfContents = headings.filter((heading) => heading.depth === 2);
   description={post.data.description}
   ogType="article"
   publishedAt={post.data.publishedAt}
+  locale="zh-cn"
 >
-  <Navigation />
+  <Navigation locale="zh-cn" page="article" />
   <main class="article-page">
     <article class="article-shell">
       <div class="article-main-column">

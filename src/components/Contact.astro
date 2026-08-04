@@ -1,25 +1,41 @@
 ---
-import { profile } from '../data/profile';
+import type { Profile } from '../data/profile';
+import type { Ui } from '../i18n/ui';
+
+interface Props {
+  profile: Profile;
+  ui: Ui;
+  index: string;
+}
+
+const { profile, ui, index } = Astro.props;
 ---
 
-<section class="contact-section" id="contact" aria-labelledby="contact-title">
+<section
+  class="contact-section"
+  id="contact"
+  aria-labelledby="contact-title"
+  data-phone-copied={ui.contact.phoneCopied}
+  data-email-copied={ui.contact.emailCopied}
+  data-copy-failed={ui.contact.copyFailed}
+>
   <div class="section-shell">
     <div class="section-heading reveal">
-      <p class="section-index">06 / CONTACT</p>
-      <h2 id="contact-title">保持联系</h2>
-      <p>如果你想与我交流，可以通过电话或邮件联系。</p>
+      <p class="section-index">{index} / CONTACT</p>
+      <h2 id="contact-title">{ui.sections.contact}</h2>
+      <p>{ui.contact.description}</p>
     </div>
 
     <div class="contact-grid">
       <article class="contact-card reveal">
-        <p>电话</p>
+        <p>{ui.contact.phone}</p>
         <a href={profile.contact.phoneHref}>{profile.contact.phone}</a>
-        <button type="button" data-copy={profile.contact.phoneCopy} data-kind="电话号码">复制电话</button>
+        <button type="button" data-copy={profile.contact.phoneCopy} data-kind="phone">{ui.contact.copyPhone}</button>
       </article>
       <article class="contact-card reveal">
-        <p>邮箱</p>
+        <p>{ui.contact.email}</p>
         <a href={profile.contact.emailHref}>{profile.contact.email}</a>
-        <button type="button" data-copy={profile.contact.email} data-kind="邮箱地址">复制邮箱</button>
+        <button type="button" data-copy={profile.contact.email} data-kind="email">{ui.contact.copyEmail}</button>
       </article>
     </div>
     <p class="copy-status" aria-live="polite"></p>
@@ -27,14 +43,19 @@ import { profile } from '../data/profile';
 </section>
 
 <script>
+  const section = document.querySelector<HTMLElement>('.contact-section');
   const status = document.querySelector<HTMLElement>('.copy-status');
   document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((button) => {
     button.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(button.dataset.copy ?? '');
-        if (status) status.textContent = `${button.dataset.kind}已复制`;
+        if (status && section) {
+          status.textContent = button.dataset.kind === 'phone'
+            ? section.dataset.phoneCopied ?? ''
+            : section.dataset.emailCopied ?? '';
+        }
       } catch {
-        if (status) status.textContent = '复制失败，请手动选择并复制';
+        if (status) status.textContent = section?.dataset.copyFailed ?? '';
       }
     });
   });

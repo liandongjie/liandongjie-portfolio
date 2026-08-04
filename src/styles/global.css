@@ -152,6 +152,21 @@ summary {
   gap: 8px;
 }
 
+.language-switch {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.language-switch a:hover,
+.language-switch a[aria-current='page'] {
+  color: var(--text);
+}
+
 .theme-toggle,
 .mobile-nav summary {
   display: flex;
@@ -408,6 +423,11 @@ summary {
 .experience-meta p {
   margin: 0;
   color: var(--muted);
+}
+
+.experience-primary .experience-company-original {
+  margin: -2px 0 8px;
+  font-size: 0.82rem;
 }
 
 .experience-meta {
@@ -1225,7 +1245,7 @@ summary {
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .nav-shell {
     grid-template-columns: 1fr auto;
     min-height: 64px;
@@ -1239,6 +1259,9 @@ summary {
   .mobile-nav {
     display: block;
   }
+}
+
+@media (max-width: 960px) {
 
   .hero {
     grid-template-columns: 1fr;
@@ -1392,6 +1415,19 @@ summary {
 }
 
 @media (max-width: 440px) {
+  .nav-shell {
+    gap: 8px;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .language-switch a[aria-current='page'],
+  .language-switch span {
+    display: none;
+  }
+
   .theme-label {
     display: none;
   }
@@ -1400,6 +1436,16 @@ summary {
     width: 42px;
     justify-content: center;
     padding-inline: 0;
+  }
+
+  .mobile-nav summary {
+    width: 42px;
+    justify-content: center;
+    padding-inline: 0;
+  }
+
+  .mobile-nav summary span {
+    display: none;
   }
 
   .education-card {

@@ -1,0 +1,43 @@
+---
+import type { Locale } from '../i18n/config';
+import { getProfile } from '../data/profile';
+import { getUi } from '../i18n/ui';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from './Navigation.astro';
+import Hero from './Hero.astro';
+import Experience from './Experience.astro';
+import Projects from './Projects.astro';
+import Skills from './Skills.astro';
+import Education from './Education.astro';
+import Blog from './Blog.astro';
+import Contact from './Contact.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const profile = getProfile(locale);
+const ui = getUi(locale);
+const isChinese = locale === 'zh-cn';
+---
+
+<BaseLayout
+  title={ui.seo.title}
+  description={ui.seo.description}
+  locale={locale}
+  alternateHomepages
+>
+  <Navigation locale={locale} />
+  <main>
+    <Hero profile={profile} ui={ui} locale={locale} />
+    <Experience profile={profile} ui={ui} />
+    <Projects profile={profile} ui={ui} />
+    <Skills profile={profile} ui={ui} />
+    <Education profile={profile} ui={ui} />
+    {isChinese && <Blog />}
+    <Contact profile={profile} ui={ui} index={isChinese ? '06' : '05'} />
+  </main>
+  <Footer />
+</BaseLayout>

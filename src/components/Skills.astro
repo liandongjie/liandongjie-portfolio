@@ -1,11 +1,19 @@
 ---
-import { profile } from '../data/profile';
+import type { Profile } from '../data/profile';
+import type { Ui } from '../i18n/ui';
+
+interface Props {
+  profile: Profile;
+  ui: Ui;
+}
+
+const { profile, ui } = Astro.props;
 ---
 
 <section class="content-section section-shell" id="skills" aria-labelledby="skills-title">
   <div class="section-heading reveal">
     <p class="section-index">03 / SKILLS</p>
-    <h2 id="skills-title">专业技能</h2>
+    <h2 id="skills-title">{ui.sections.skills}</h2>
   </div>
   <div class="skills-grid">
     {profile.skills.map((skill) => (
