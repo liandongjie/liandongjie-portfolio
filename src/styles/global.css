@@ -109,13 +109,9 @@ summary {
 
 .wordmark {
   width: max-content;
-  font-size: 1.1rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-}
-
-.wordmark span {
-  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
 }
 
 .desktop-nav {
@@ -286,13 +282,6 @@ summary {
   letter-spacing: -0.025em;
 }
 
-.hero-intro {
-  max-width: 580px;
-  margin: 16px 0 0;
-  color: var(--muted);
-  font-size: 1.05rem;
-}
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -365,9 +354,9 @@ summary {
 }
 
 #experience,
+#projects,
 #skills,
-#education,
-#about {
+#education {
   scroll-margin-top: 108px;
 }
 
@@ -382,33 +371,6 @@ summary {
   max-width: 420px;
   margin: 20px 0 0;
   color: var(--muted);
-}
-
-.about-copy {
-  padding-top: 5px;
-}
-
-.about-copy p {
-  max-width: 620px;
-  margin: 0;
-  color: var(--muted);
-  font-size: 1.05rem;
-}
-
-.about-copy > p:first-child {
-  margin-bottom: 8px;
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
-.about-copy strong {
-  display: block;
-  margin-bottom: 26px;
-  font-size: clamp(2.4rem, 5vw, 4.8rem);
-  letter-spacing: -0.06em;
-  line-height: 1;
 }
 
 .experience-list {
@@ -454,6 +416,83 @@ summary {
 
 .experience-meta p + p {
   margin-top: 8px;
+}
+
+.projects-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.project-item {
+  min-width: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-item article {
+  min-width: 0;
+  padding-block: 28px;
+}
+
+.project-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.project-heading h3 {
+  min-width: 0;
+  margin: 0;
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+  letter-spacing: -0.025em;
+  overflow-wrap: anywhere;
+}
+
+.project-heading h3 a:hover {
+  color: var(--accent);
+}
+
+.project-link-icon {
+  display: inline-block;
+  margin-left: 0.35em;
+  font-size: 0.8em;
+}
+
+.project-status {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.project-description {
+  margin: 12px 0 0;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.project-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 18px 0 0;
+  padding: 0;
+  gap: 8px;
+  list-style: none;
+}
+
+.project-technologies li {
+  padding: 4px 9px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  font-size: 0.76rem;
+  font-weight: 650;
 }
 
 .skills-grid {
@@ -1327,6 +1366,12 @@ summary {
 
   .experience-meta p + p {
     margin-top: 4px;
+  }
+
+  .project-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .education-school-header,
