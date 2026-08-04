@@ -28,7 +28,7 @@ const ogImageUrl = Astro.site ? new URL('/og-placeholder.png', Astro.site) : und
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
     {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
     {publishedAt && <meta property="article:published_time" content={publishedAt.toISOString()} />}
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <title>{title}</title>
     <script is:inline>
       (() => {

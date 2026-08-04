@@ -1,0 +1,37 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section class="content-section section-shell" id="projects" aria-labelledby="projects-title">
+  <div class="section-heading reveal">
+    <p class="section-index">02 / PROJECTS</p>
+    <h2 id="projects-title">个人项目</h2>
+  </div>
+  <ol class="projects-list">
+    {profile.projects.map((project) => (
+      <li class="project-item reveal">
+        <article>
+          <div class="project-heading">
+            <h3>
+              {project.url ? (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`${project.name}（在新标签页打开）`}
+                >
+                  {project.name}<span class="project-link-icon" aria-hidden="true">↗</span>
+                </a>
+              ) : project.name}
+            </h3>
+            <p class="project-status">{project.status}</p>
+          </div>
+          <p class="project-description">{project.description}</p>
+          <ul class="project-technologies" aria-label={`${project.name} 技术`}>
+            {project.technologies.map((technology) => <li>{technology}</li>)}
+          </ul>
+        </article>
+      </li>
+    ))}
+  </ol>
+</section>
