@@ -2,11 +2,12 @@
 import { profile } from '../data/profile';
 
 const year = new Date().getFullYear();
+const homeHref = Astro.url.pathname === '/' ? '#home' : '/#home';
 ---
 
 <footer class="site-footer">
   <div class="section-shell">
-    <a class="wordmark" href="#home" aria-label="返回首页">DJ<span>.</span></a>
+    <a class="wordmark" href={homeHref} aria-label="返回首页">DJ<span>.</span></a>
     <p>© {year} {profile.name}. All rights reserved.</p>
   </div>
 </footer>
