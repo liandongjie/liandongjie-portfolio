@@ -46,16 +46,6 @@ const profileData = {
             technologies: ['Vue', 'TypeScript', 'Ant Design Vue', 'Axios', 'Python', 'FastAPI', 'SQLAlchemy', 'Pydantic', 'MySQL', 'Uvicorn'],
             url: 'https://github.com/liandongjie/omms_app',
             status: text('已上线', 'Deployed')
-        },
-        {
-            name: text('Astro 中英双语个人主页模板', 'Astro Bilingual Portfolio Template'),
-            description: text(
-                '面向求职者和初学者的开源个人主页模板，支持中英文首页、深浅主题、Markdown 博客、集中配置和 Vercel 部署。',
-                'An open-source portfolio template for job seekers and beginners, featuring bilingual homepages, light and dark themes, a Markdown blog, centralized configuration, and Vercel deployment.'
-            ),
-            technologies: ['Astro', 'TypeScript', 'HTML', 'CSS', 'Markdown', 'Vercel'],
-            url: 'https://github.com/liandongjie/astro-portfolio-template',
-            status: text('已开源', 'Open Source')
         }
     ],
     skills: [
